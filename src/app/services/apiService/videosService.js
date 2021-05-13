@@ -21,7 +21,7 @@ const videosService = {
 
   updateVideo: async (data) =>{
     try{
-      const {id} = data;;
+      const {id} = data;
       return await videosRepository.updateVideo(id, data);
     }catch (error) {
       throw error;

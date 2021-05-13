@@ -63,33 +63,34 @@ class JwtService extends FuseUtils.EventEmitter {
 		});
 	};
 
-	signInWithEmailAndPassword = (email, password) => {
+	signInWithEmailAndPassword = (NUMERODOCUMENTO, CONTRASENA, TIPODOCUMENTO) => {
 		return new Promise((resolve, reject) => {
 			const data = {
-				email,
-				password,
-				role: 'admin'
+        NUMERODOCUMENTO,
+        CONTRASENA,
+        TIPODOCUMENTO
 			};
 			axios
-				.post(`${process.env.REACT_APP_COLCAGRO_API}/api/auth/email`, serialize(data), {
+				.post(`${process.env.REACT_APP_COLCAGRO_API}/api/admin`, data, {
 					headers: {
-						'Content-Type': 'multipart/form-data'
+						'Content-Type': 'application/json'
 					}
 				})
 				.then(response => {
-					if (Object.prototype.hasOwnProperty.call(response.data, 'access_token')) {
-						this.setSession(response.data.access_token);
-						axios
+					if (Object.prototype.hasOwnProperty.call(response.data.data, 'access_token')) {
+						this.setSession(response.data.data.access_token);
+            resolve(response.data.data);
+						/* axios
 							.get(`${process.env.REACT_APP_COLCAGRO_API}/api/auth/me`, {
 								headers: {
-									Authorization: `Bearer ${response.data.access_token}`
+									Authorization: `Bearer ${response.data.data.access_token}`
 								}
 							})
 							.then(res => {
 								if (res.data.code === 200) {
 									resolve(res.data.data.data);
 								}
-							});
+							}); */
 					} else {
 						reject(response.data.data);
 					}
@@ -131,10 +132,10 @@ class JwtService extends FuseUtils.EventEmitter {
 
 	setSession = access_token => {
 		if (access_token) {
-			localStorage.setItem('@colcagro_admin:access_token', access_token);
+			localStorage.setItem('@adultomayor_admin:access_token', access_token);
 			Axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
 		} else {
-			localStorage.removeItem('@colcagro_admin:access_token');
+			localStorage.removeItem('@adultomayor_admin:access_token');
 			delete Axios.defaults.headers.common.Authorization;
 		}
 	};
@@ -158,7 +159,7 @@ class JwtService extends FuseUtils.EventEmitter {
 	};
 
 	getAccessToken = () => {
-		return window.localStorage.getItem('@colcagro_admin:access_token');
+		return window.localStorage.getItem('@adultomayor_admin:access_token');
 	};
 }
 

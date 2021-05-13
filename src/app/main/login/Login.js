@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 	rightSection: {
 		background: `#fff`,
-		color: theme.palette.primary.contrastText
+		color: theme.palette.primary.dark
 	}
 }));
 
@@ -55,6 +55,8 @@ function Login() {
 	}
 
 	function handleSubmit(model) {
+    model.TIPODOCUMENTO = 'CC'
+    console.log(model)
 		dispatch(submitLogin(model));
 	}
 
@@ -89,24 +91,15 @@ function Login() {
 								>
 									<TextFieldFormsy
 										className="mb-16"
-										InputProps={{
-											endAdornment: (
-												<InputAdornment position="end">
-													<Icon className="text-20" color="action">
-														email
-													</Icon>
-												</InputAdornment>
-											)
-										}}
-										label="Email"
-										name="email"
+										label="Documento"
+										name="NUMERODOCUMENTO"
 										// value=""
 										type="text"
 										validationErrors={{
-											minLength: 'Mínimo de 9 caracteres'
+											minLength: 'Mínimo de 5 caracteres'
 										}}
 										validations={{
-											minLength: 9
+											minLength: 5
 										}}
 										variant="outlined"
 										required
@@ -127,7 +120,7 @@ function Login() {
 											)
 										}}
 										label="Password"
-										name="password"
+										name="CONTRASENA"
 										type="password"
 										validationErrors={{
 											minLength: 'Mínimo de 5 caracteres'
@@ -152,22 +145,12 @@ function Login() {
 								</Formsy>
 							</div>
 						</CardContent>
-
-						{/* <div className="flex flex-col items-center justify-center pb-32">
-							<div className="mb-16">
-								<span className="mr-8 font-medium">No tienes una cuenta?</span>
-								<Link className="font-medium" to="/registro">
-									Regístrate
-								</Link>
-							</div>
-						</div> */}
 					</Card>
-
 					<div className={clsx(classes.rightSection, 'hidden md:flex flex-1 items-center justify-center p-64')}>
 						<div className="max-w-320">
 							<FuseAnimate animation="transition.slideUpIn" delay={400}>
 								<Typography className="font-800 leading-tight" color="inherit" variant="h3">
-									Bienvenido <br /> admin de Adulto Mayor
+									Bienvenido admin de Adulto Mayor
 								</Typography>
 							</FuseAnimate>
 

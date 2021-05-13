@@ -41,8 +41,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const defaultFormState = {
-	enlace_id: 0,
-	texto: '',
+	id: 0,
+	title: '',
+  type: '',
+  duration: '',
   url: '',
 	type: ''
 };
@@ -69,6 +71,9 @@ function VideosZoomFocus(props) {
 
 	useEffect(() => {
 		dispatch(videosGet(routeParams.enlaceId));
+	}, [dispatch, routeParams]);
+
+  useEffect(() => {
     if(video){
       initText();
     }
@@ -76,6 +81,7 @@ function VideosZoomFocus(props) {
 
   const handleSubmitBlog = () => {
     dispatch(updateVideo(form));
+    setDesableText(!desableText);
 	};
 	return (
     <FuseAnimate delay={100} >

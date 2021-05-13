@@ -19,8 +19,9 @@ export const videoGetId = createAsyncThunk('videos/videoGet', async (id, {dispat
   }
 })
 
-export const updateVideo = createAsyncThunk('texto/updateTexto', async (data, { dispatch, rejectWithValue}) => {
+export const updateVideo = createAsyncThunk('videos/updateTexto', async (data, { dispatch, rejectWithValue}) => {
   try {
+    console.log(data);
     const video = await videosService.updateVideo(data);
     dispatch(
       showMessage({

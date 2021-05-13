@@ -74,7 +74,6 @@ function VideosWhatsappFocus(props) {
 	}, [dispatch, routeParams]);
 
   useEffect(() => {
-    console.log(video);
     if(video){
       initText();
     }
@@ -82,6 +81,7 @@ function VideosWhatsappFocus(props) {
 
   const handleSubmitBlog = () => {
     dispatch(updateVideo(form));
+    setDesableText(!desableText);
 	};
 	return (
     <FuseAnimate delay={100} >

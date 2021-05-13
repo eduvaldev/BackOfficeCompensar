@@ -74,7 +74,7 @@ export const setUserData = user => async (dispatch, getState) => {
          */
 
 	history.location.state = {
-		redirectUrl: 'blogs' // for example 'apps/academy'
+		redirectUrl: 'textos/anita/1' // for example 'apps/academy'
 	};
 
 	/*

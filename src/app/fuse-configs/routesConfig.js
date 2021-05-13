@@ -26,7 +26,7 @@ const routeConfigs = [
 ];
 
 const routes = [
-	...FuseUtils.generateRoutesFromConfigs(routeConfigs),
+	...FuseUtils.generateRoutesFromConfigs(routeConfigs, ['admin']),
 	{
 		path: '/',
 		auth: null,

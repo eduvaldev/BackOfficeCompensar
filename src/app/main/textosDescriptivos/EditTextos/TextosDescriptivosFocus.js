@@ -38,7 +38,7 @@ const defaultFormState = {
 	texto_id: 0,
 	pagina: '',
 	texto: '',
-	type: 'anita'
+	type: 'descriptivo'
 };
 
 
@@ -67,10 +67,10 @@ function TextoAnitaFocus(props) {
   const handleSubmitBlog = () => {
     form.texto_id = texto.id;
     form.pagina = texto.pagina;
-	  form.type = 'anita';
+	  form.type = 'descriptivo';
     console.log(form);
     dispatch(updateText(form));
-    
+    setDesableText(!desableText);
 	};
 	return (
 		<FuseAnimate delay={100} className={clsx('p-4')} >
